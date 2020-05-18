@@ -1,6 +1,6 @@
 # 제목 : 
 
-코드 확인 : [](https://github.com/ark1st/MDD/blob/master/MDD_DL-band_model.ipynb)
+코드 확인 : [https://github.com/ark1st/MDD/blob/master/MDD_DL-band_model.ipynb](https://github.com/ark1st/MDD/blob/master/MDD_DL-band_model.ipynb)
 
 ## 1. 데이터셋 설명 
 
