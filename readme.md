@@ -1,10 +1,10 @@
 # 제목 : 
 
-
+코드 확인 : [](https://github.com/ark1st/MDD/blob/master/MDD_DL-band_model.ipynb)
 
 ## 1. 데이터셋 설명 
 
-Hospital Universiti Sains Malaysia 에서 인간 윤리 위원회가 승인한 실험 설계에 따라 34명의 MDD, 30명의 정상 환자 수집 MDD 환자는 DSM-IV에 따라 우울증 진단 기준 충족된 환자, 약물 효과를 피하기 위해 2주간의 약물 세척 시간을 거침
+Hospital Universiti Sains Malaysia 에서 인간 윤리 위원회가 승인한 실험 설계에 따라 34명의 MㄴDD, 30명의 정상 환자 수집 MDD 환자는 DSM-IV에 따라 우울증 진단 기준 충족된 환자, 약물 효과를 피하기 위해 2주간의 약물 세척 시간을 거침
 
 ## 2. 기존 연구 리뷰
 
