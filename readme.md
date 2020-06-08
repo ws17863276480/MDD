@@ -69,7 +69,7 @@ train-test accuracy loss graph
 ```
 Acc : 96.80 (+/- 0.07%)
 Sen : 90.38 (+/- 0.22%)
-Spec : 90.00 (+/- 0.30%)
+Spec : 99.00 (+/- 0.10%)
 ```
 
 
