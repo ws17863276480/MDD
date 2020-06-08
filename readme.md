@@ -48,6 +48,12 @@ Band pass filter를 사용하여 원하는 주파수 대역대만 추출. 1개�
 
 #### 4.4. 딥러닝 모델
 
+2D Convolution layer를 사용한 딥 러닝 모델을 사용하였다. 
+
+2층의 Conv2D 레이어 및 ReLU Activation Function를 사용하였다. 
+
+모델 학습에는 Adam Optimizer를 사용하였다.
+
 ![](https://github.com/ark1st/MDD/blob/master/diagram/model.PNG?raw=true)
 
 #### 4.5. 성능평가
@@ -61,6 +67,8 @@ confusion matrix에 기반하여 도출된 Accuracy, Sensitivity, specificity을
 #### 5. 결과
 
 train-test accuracy loss graph
+
+fig에서 Epoch가 증가함에 따라 Accuracy가 증가하고 loss가 감소하는 것으로 나타났다. 고안된 모델에서 94.4의 Test accuracy를 나타났다.
 
 ![](https://github.com/ark1st/MDD/blob/master/diagram/train-test.PNG?raw=true)
 
@@ -77,3 +85,26 @@ Spec : 99.00 (+/- 0.10%)
 #### 6. 토론
 
 기존 연구와 비교
+
+| 논문명                                                       | Dataset                               | Feature extraction method             | Channel  selection             | 분류기        | 성능(Accuracy) |
+| ------------------------------------------------------------ | ------------------------------------- | ------------------------------------- | ------------------------------ | ------------- | -------------- |
+| [Electroencephalogram (EEG)-based computer-aided technique to diagnose major depressive disorder (MDD)](https://www.sciencedirect.com/science/article/pii/S1746809416300866#bib0220) | Wajid Mumtaz                          | + EEG alpha asymmetry                 | 19                             | SVM           | 98.4           |
+| [A deep learning framework for automatic diagnosis of unipolar depression](https://www.sciencedirect.com/science/article/pii/S1386505619307154#!) | Wajid Mumtaz                          | 1s (256 samples) segmented  EEG Data  | 19                             | CNN (1D)      | 98.32          |
+| [Detection of major depressive disorder using linear and non-linear features from EEG signals](https://link.springer.com/article/10.1007/s00542-018-4075-z) | Wajid Mumtaz                          | Linear Features + Non-linear Features | 19                             | MLPNN, RBFN   | 93.33          |
+| [Classification of Depression Patients and Normal Subjects Based on Electroencephalogram (EEG) Signal Using Alpha Power and Theta Asymmetry](https://link.springer.com/article/10.1007/s10916-019-1486-z#Bib1) | Wajid Mumtaz                          | Alpha 2 power + theta symmetry        | 19                             | SVM           | 88.33          |
+| Deep Learning based Pre-screening method for Depression with Imagery Frontal EEG Channels | Wajid Mumtaz                          | Imagery Frontal EEG Channels (STFT)   | 2 (Fp1, Fp2)                   | VGG16         | 87.5           |
+| Automated Depression Detection Using Deep Representation and Sequence Learning with EEG Signals | Acharya et al.                        | Raw EEG Signals                       | 4 (Fp1, Fp2, T3, T4)           | CNN + LSTM    | 99.12, 97.66   |
+| Detection of Depression and Scaling of Severity Using Six Channel EEG Data | Central Institute of Psychiatry (CIP) | Linear Features + Non-linear Features | 6 (FT7, FT8, T7, T8, TP7, TP8) | SVM (ReliefF) | 96.02          |
+| Present Study                                                | Wajid Mumtaz                          | Band power                            | 4 (Fp1, Fp2, F7, F8)           | CNN (Conv2D)  | 96.80          |
+
+## 
+
+
+
+딥러닝 학습과 검증에 있어서 데이터의 절대적 양은 아주 중요한 요소. but 현재 데이터의 양으로는 모델의 학습과 평가에 있어서 한계가 있다고 판단됨. 
+
+따라서, 더 많은 양의 데이터를 확보하거나, 데이터의 양적 한계를 극복하는 방법론을 고안하여, 더 좋은 성과를 보여줄 수 있도록.
+
+#### 7. 결론
+
+뇌파 데이터에서 4개의 전두엽 채널을 선택하고, 이를 밴드 대역 주파수별로 특징 추출한 데이터를 2차원의 Convolution laver 기반의 딥러닝 모델에 학습 시켜서 96.8의 결과를 얻음. 저채널 기기를 사용한 뇌파 사전 진단에 있어서 밴드 대역 주파수를 사용한 특징 추출 방법과 2차원의 컨볼루션 레이어를 사용한 딥러닝 모델은 효과적이다.
