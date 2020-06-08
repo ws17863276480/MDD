@@ -1,6 +1,8 @@
 # 제목 : 
 
-코드 확인 : [https://github.com/ark1st/MDD/blob/master/MDD_DL-band_model.ipynb](https://github.com/ark1st/MDD/blob/master/MDD_DL-band_model.ipynb)
+2020.06.08 수정
+
+코드 확인 : 
 
 ## 1. 데이터셋 설명 
 
@@ -8,47 +10,9 @@ Hospital Universiti Sains Malaysia 에서 인간 윤리 위원회가 승인한 �
 
 ## 2. 기존 연구 리뷰
 
-### 1. Wajid Mumtaz의 Dataset을 사용한 논문
-
-- Electroencephalogram (EEG)-based computer-aided technique to diagnose major depressive disorder (MDD) 
-
-  https://ark1st.tistory.com/52
-
-  
-
-- A deep learning framework for automatic diagnosis of unipolar depression
-
-  https://ark1st.tistory.com/53
-
-  
-
-- Imagery Signal-based Deep Learning Method for Prescreening Major Depressive Disorder
-
-  https://ark1st.tistory.com/56?category=805279
-
-  
-
-- Classification of Depression Patients and Normal Subjects Based on Electroencephalogram (EEG) Signal  Using Alpha Power and Theta Asymmetry
-
-  https://ark1st.tistory.com/55?category=805279
-
-  
-
-- Detection of major depressive disorder using linear and non-linear features from EEG signals
-
-  https://ark1st.tistory.com/54?category=805279
-
-  
-
-### 2.타 데이터셋으로 진행된 연구
-
-Automated EEG-based screening of depression using deep convolutional neural network
-
-Depression Detection Using Relative EEG Power Induced by Emotionally Positive Images and a Conformal Kernel Support Vector Machine
 
 
-
-## 3. 논문에 대한 방법론 정리
+### 2.1. 논문에 대한 방법론 정리
 
 | 논문명                                                       | 전처리 방법                                                  | 모델                                                         | 성능                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -57,6 +21,8 @@ Depression Detection Using Relative EEG Power Induced by Emotionally Positive Im
 | [Detection of major depressive disorder using linear and non-linear features from EEG signals](https://link.springer.com/article/10.1007/s00542-018-4075-z) | 1. 뇌파 노이즈 제거      <br />0.5hz -32hz 신호만 남기고 cut     <br />ICA를 사용하여 눈 깜빡임 제거          <br />2. feature extraction      <br />1) Band Power      델타 (0.5–4Hz), 세타 (4–8Hz), 알파 (8-13Hz) 및 베타 (13-30Hz)     <br /> 2) 반구형 비대칭     <br /> 3) 웨이블릿 변환         <br /> 3. 차원 축소     비선형 분석(웨이블릿)에 있어서 PCA로 차원 축소 | (1) MLPNN      (2) RFBN      (3) LDA      (4) QDA            | 1) 밴드 파워     알파 전력이 MLPNN 에서 acc 91.67을 달성          <br />2) 반구형 비대칭     알파 비대칭에 대한 QDA에서 73.33의 분류 정확도          <br />3) 비선형 Feature     RWE : RBFN , WE : LDA에서 각각 90%의 분류 정확도          <br />4) 조합     RWE와 알파 파워의 조합은 정확도: 93.33  민감도 : 94.44 특이도 87.78을 보여주었다 |
 | [Classification of Depression Patients and Normal Subjects Based on Electroencephalogram (EEG) Signal Using Alpha Power and Theta Asymmetry](https://link.springer.com/article/10.1007/s10916-019-1486-z#Bib1) | 1. 뇌파 노이즈 제거      <br />0.5hz~32hz 신호만 남기고 cut    <br /> ICA를 사용하여 눈 깜빡임 제거     <br />     2. feature extraction      <br />1) Band Power      <br />델타 (0.5–4Hz), 세타 (4–8Hz), 베타  (13–30Hz)     알파1 (8~10.5), 알파2(10.5~13)     <br /> 2) 반구간 세타 비대칭     - 8개의 feature          <br />3. 데이터 메트릭스 구성    <br /> 1) 각 밴드파워에 대한 세트     (60, 19) * 5band         <br /> 2) 알파+세타 비대칭 조합을 위한 세트 (60*27)         <br /> 3. Feature Selection     MCFS 를 사용해 피쳐 선택 | (1) 로지스틱 회귀     (2) SVM      (3) NB     (4) DT         | 2) 대역 전력 기반     알파 전력 기반 SVM에서 84.50의  ACC     (          <br />3) 조합     알파2 파워와 세타 비대칭의 조합 - SVM에서 88.33의 분류 정확도     ( 특이도 89.41 %      민감도 90.81 %) |
 | Imagery Signal-based Deep  Learning Method for Prescreening Major Depressive Disorder | 1. Feature Selection     저채널 장비에서 사용되는 Fp1, Fp2 채널만 사용          <br />2. STFT     <br />3. 스펙트로그램 변환<br />     4. 2채널 스펙트로그램 병합     <br />5. 차원 축소 - 기존 이미지 1/10 | CNN 모델                                                     | val_acc = 0.75      <br />val_loss = 0.3                     |
+| Automated Depression Detection Using Deep Representation and Sequence Learning with EEG Signals | 특별한 전처리 없이  raw  신호를 딥러닝 모델에 바로 넣음      | CNN  모델 + LSTM                                             | 98.98                                                        |
+| Detection of Depression and Scaling of Severity Using Six Channel EEG Data | \1. 노이즈 제거<br/> \2. 6개의 채널 (FT7, FT8, T7, T8, TP7, TP8) 사용<br/> \3. 2초의 epoch 데이터로 분할하고 2초 데이터의 피크 진폭을 측정하고 표준편차의 3배보다 높은 피크 진폭의 에포크는 삭제<br/> \4. 특징 추출 : 대역 전력 <br/> \5. 반구간 비대칭 계산<br/> \6. 비선형 특징 <br/> \- 샘플 엔트로피<br/> \- DFA | SVM                                                          | 90.26                                                        |
 
 ## 4. 본 논문에서 사용할 방법론
 
@@ -76,19 +42,17 @@ Band pass filter를 사용하여 원하는 주파수 대역대만 추출. 1개�
 
 #### 4.3. Data Normalization
 
-데이터 세트의 스케일을 맞추기 위해서 data normalization 작업을 시행함. train set 에서 fit 된 scaler로 test set을 정규화함.
+데이터 세트의 스케일을 맞추기 위해서 data normalization 작업을 시행함. train set 에서 fit 된 scaler로  train set과 test set을 정규화함.
 
 
 
-#### 4.4. 딥러닝
-
-20200518) CNN 모델 사용. 
+#### 4.4. 딥러닝 모델
 
 ![](https://github.com/ark1st/MDD/blob/master/diagram/model.PNG?raw=true)
 
 #### 4.5. 성능평가
 
-confusion matrix에 기반하여 도출된 Accuracy, Recall, Precision, F1-score을 사용하여 성능평가.
+confusion matrix에 기반하여 도출된 Accuracy, Sensitivity, specificity을 사용하여 성능평가.
 
 ![Understanding Confusion Matrix - Towards Data Science](https://miro.medium.com/max/712/1*Z54JgbS4DUwWSknhDCvNTQ.png)
 
@@ -96,12 +60,20 @@ confusion matrix에 기반하여 도출된 Accuracy, Recall, Precision, F1-score
 
 #### 5. 결과
 
-10-fold cross validation 결과
+train-test accuracy loss graph
+
+![](https://github.com/ark1st/MDD/blob/master/diagram/train-test.PNG?raw=true)
+
+10*10-fold cross validation 결과
 
 ```
-Acc : 91.67 (+/- 20.07%)
-Recall : 85.0 (+/- 0.32%)
-Precision : 90.0 (+/- 0.30%)
-F1 : 87.0 (+/- 0.31%)
+Acc : 96.80 (+/- 0.07%)
+Sen : 90.38 (+/- 0.22%)
+Spec : 90.00 (+/- 0.30%)
 ```
 
+
+
+#### 6. 토론
+
+기존 연구와 비교
