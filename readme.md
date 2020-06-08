@@ -26,7 +26,7 @@ Hospital Universiti Sains Malaysia 에서 인간 윤리 위원회가 승인한 �
 
 ## 4. 본 논문에서 사용할 방법론
 
-![](https://github.com/ark1st/MDD/blob/master/diagram/mdd-diagram.png?raw=true)
+![](https://github.com/ark1st/MDD/blob/master/diagram/mdd-diagram.jpg?raw=true)
 
 
 
