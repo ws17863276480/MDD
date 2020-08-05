@@ -82,7 +82,7 @@ for k in range(len(list_im)):
         # print(data_first.columns[n],':',n)
         data = data_cv
         #choosing hz
-        result = bandpower(data, 256, [4, 8], window_sec=None)
+        result = bandpower(data, 256, [8, 13], window_sec=None)
         print(data_first.columns[n], ':', result)
         result_list.append(result)
     total_list.append(result_list)
