@@ -12,8 +12,8 @@ import pandas as pd
 
 # %%
 
-result_list = []
-total_list = []
+
+
 
 #%%
 def bandpower(data, sf, band, window_sec=None,relative=True):
@@ -74,6 +74,8 @@ def bandpower(data, sf, band, window_sec=None,relative=True):
 #theta -> 4,8
 ######change path
 def relative_Power(input_list, save_dir):
+    total_list = []
+    result_list = []
     list_im=input_list
     print(len(list_im))
     for k in range(len(list_im)):
